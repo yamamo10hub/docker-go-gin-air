@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - ./src:/go/src/
+    working_dir: /go/src
+    command: bash -c "go mod tidy && air"
+    ports:
+      - 8080:8080
+    tty:
+      true
